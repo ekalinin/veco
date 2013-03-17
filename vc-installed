@@ -1,0 +1,19 @@
+
+usage() {
+    echo "usage: vc installed"
+}
+
+cmd_default() {
+    vc_list=$(get_vc_installed)
+    for vc_exec in `echo $vc_list`
+    do
+        echo "$vc_exec"
+    done
+}
+
+cmd_help() {
+    usage
+    exit 0
+}
+
+# /* vim: set filetype=sh : */

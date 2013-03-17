@@ -1,13 +1,14 @@
 
-VECO_VERSION=0.3.0
-
 usage() {
-    echo "usage: vc version"
+    echo "usage: vc push [ other options ]"
 }
+
 
 cmd_default() {
-    echo "$VECO_VERSION"
+    vc_exec=$(get_vc_type)
+    $vc_exec push "$@"
 }
+
 
 cmd_help() {
     usage

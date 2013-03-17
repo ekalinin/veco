@@ -1,0 +1,24 @@
+
+usage() {
+    echo "usage: vc up [ other options ]"
+}
+
+
+cmd_default() {
+    vc_exec=$(get_vc_type)
+    vc_args=""
+    case $vc_exec in
+        "svn") vc_args="up";;
+        "hg" ) vc_args="pull --update";;
+        "git") vc_args="pull";;
+    esac
+    $vc_exec $vc_args "$@"
+}
+
+
+cmd_help() {
+    usage
+    exit 0
+}
+
+# /* vim: set filetype=sh : */
