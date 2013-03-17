@@ -1,0 +1,21 @@
+
+usage() {
+    echo "usage: vc create-ignore"
+}
+
+
+cmd_default() {
+    vc_type=$(get_vc_type)
+    vc_ignore=".${vc_type}ignore"
+
+    # TODO: add `get_project_root` in vc_common and use it here
+    touch "$vc_ignore"
+}
+
+
+cmd_help() {
+    usage
+    exit 0
+}
+
+# /* vim: set filetype=sh : */

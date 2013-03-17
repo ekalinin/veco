@@ -1,13 +1,14 @@
 
-VECO_VERSION=0.2.0
-
 usage() {
-    echo "usage: vc version"
+    echo "usage: vc diff"
 }
+
 
 cmd_default() {
-    echo "$VECO_VERSION"
+    vc_exec=$(get_vc_type)
+    $vc_exec diff "$@" | colordiff | less -R
 }
+
 
 cmd_help() {
     usage
