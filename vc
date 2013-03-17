@@ -15,6 +15,7 @@ usage() {
     echo
     echo "Available subcommands are:"
     echo "   type      Shows type of the version control system used in current dir."
+    echo "   installed Shows types of the version control systems installed on current host."
     echo "   version   Shows version information."
     echo "   commands  Shows list of all available commands."
     echo
