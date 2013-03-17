@@ -1,0 +1,69 @@
+# Returns typical forlder for certain
+# version control system
+get_vc_default_dir() {
+    echo ".$1"
+}
+
+
+# Returns list of control version systems
+# which are installed on current host
+get_vc_installed() {
+    vc_candidates="svn hg git bzr"
+    vc_installed=""
+
+    for vc in `echo $vc_candidates`
+    do
+        vc_which=$(which $vc | wc -l)
+        if [ "$vc_which" != "0" ]; then
+            vc_installed="$vc_installed $vc"
+        fi;
+    done
+    echo "$vc_installed"
+}
+
+
+# Returns type of version control system
+# in current directory
+get_vc_type() {
+    vc_list=$(get_vc_installed)
+
+    # detect by typical internal folder
+    # (check if folder exists)
+    for vc in `echo $vc_list`
+    do
+        vc_dir=$(get_vc_default_dir "$vc")
+        if [ "$DEBUG" = "yes" ]; then
+            echo "checking: $vc, folder: $vc_dir"
+        fi
+        if [ -d "$vc_dir" ]; then
+            echo "$vc"
+            return
+        fi
+    done
+
+    # detect with command if in subfolder of the project
+    # (actual for hg/git where int folder exists only
+    # in the root of the project)
+    for vc in `echo $vc_list`
+    do
+        if [ "$DEBUG" = "yes" ]; then
+            echo "checking: $vc, command: $vc status"
+        fi
+        vc_status=$($vc status 2> /dev/null | wc -l)
+        if [ "$vc_status" != "0" ]; then
+            echo "$vc"
+            return
+        fi
+    done
+
+    echo "not found"
+}
+
+
+# Returns list of available command
+get_vc_available_commands() {
+    find $VECO_DIR -iname "vc-*" | cut -d "-" -f 2
+}
+
+
+# /* vim: set filetype=sh : */

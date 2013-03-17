@@ -1,0 +1,16 @@
+
+usage() {
+    echo "usage: vc type"
+}
+
+cmd_default() {
+    # from vc_common
+    get_vc_type
+}
+
+cmd_help() {
+    usage
+    exit 0
+}
+
+# /* vim: set filetype=sh : */

@@ -1,0 +1,64 @@
+#!/bin/sh
+#
+
+# enable debug mode
+if [ "$DEBUG" = "yes" ]; then
+    set -x
+fi
+
+# current directory
+export VECO_DIR=$(dirname "$(echo "$0" | sed -e 's,\\,/,g')")
+
+
+usage() {
+    echo "usage: vc <subcommand>"
+    echo
+    echo "Available subcommands are:"
+    echo "   commands  Shows list of all available commands."
+    echo "   type      Shows type of the version control system used in current dir."
+    echo "   status    Shows new/changed/deleted objects in current dir."
+    echo "   version   Shows version information."
+    echo
+    echo "Try 'vc <subcommand> --help' for details."
+}
+
+
+main() {
+    if [ $# -lt 1 ]; then
+        usage
+        exit 1
+    fi
+
+    # load common functions
+    . "$VECO_DIR/vc_common"
+
+    # get command from first command line arg
+    SUBCOMMAND="$1"; shift
+
+    # is it exists
+    if [ ! -e "$VECO_DIR/vc-$SUBCOMMAND" ]; then
+        usage
+        exit 1
+    fi
+
+    # run command
+    . "$VECO_DIR/vc-$SUBCOMMAND"
+
+    SUBACTION="default"
+    if [ "$1" = "--help" ]; then
+        SUBACTION="help";
+    fi
+    if ! type "cmd_$SUBACTION" >/dev/null 2>&1; then
+        warn "Unknown subcommand: '$SUBACTION'"
+        usage
+        exit 1
+    fi
+
+    # run subaction
+    cmd_$SUBACTION "$@"
+}
+
+
+main "$@"
+
+# /* vim: set filetype=sh : */
