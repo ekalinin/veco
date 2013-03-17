@@ -1,0 +1,18 @@
+
+_vc() {
+
+    cur="${COMP_WORDS[COMP_CWORD]}"
+    prev="${COMP_WORDS[COMP_CWORD-1]}"
+
+    commands=$(vc commands)
+
+    if [ $COMP_CWORD == 1 ]
+    then
+      COMPREPLY=($(compgen -W "${commands}" -- ${cur}))
+      return 0
+    fi
+}
+
+complete -F _vc vc
+
+# /* vim: set filetype=sh : */

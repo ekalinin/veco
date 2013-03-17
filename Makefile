@@ -5,10 +5,7 @@ EXEC_FILES=vc
 
 # files that need mode 644
 SCRIPT_FILES =vc_common
-SCRIPT_FILES+=vc-commands
-SCRIPT_FILES+=vc-status
-SCRIPT_FILES+=vc-type
-SCRIPT_FILES+=vc-version
+SCRIPT_FILES+=vc-*
 
 all:
 	@echo "usage: make install"
