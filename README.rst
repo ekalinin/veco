@@ -103,8 +103,8 @@ Dependencies
 **Veco** depends on only one third-party script — ``colordiff``.
 
 
-Поддерживаемые системы контроля версий
---------------------------------------
+Supported version control systems
+---------------------------------
 
 At the moment **veco** is tested to work with the following systems:
 
