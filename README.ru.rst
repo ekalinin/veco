@@ -45,12 +45,11 @@ Veco — обертка над наиболее популярными сист�
 Включить автодополнение можно так же двумя способами.
 Для всей системы::
 
-    $ sudo cp ./bash_completion/vc /etc/bash-completion.d
+    $ sudo cp ./bash_completion/vc /etc/bash_completion.d
 
 Только для конкретного пользователя::
 
-    $ mkdir -p ~/bash-completion.d
-    $ cp ./bash_completion/vc ~/bash-completion.d
+    $ echo ". `pwd`/bash_completion/vc" >> ~/.bashrc
 
 
 Как пользоваться

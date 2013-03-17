@@ -43,12 +43,11 @@ just do not have root-rights), then do the following::
 Autocompletion can also be enabled in two ways.
 Global::
 
-    $ sudo cp ./bash_completion/vc /etc/bash-completion.d
+    $ sudo cp ./bash_completion/vc /etc/bash_completion.d
 
 Local::
 
-    $ mkdir -p ~/bash-completion.d
-    $ cp ./bash_completion/vc ~/bash-completion.d
+    $ echo ". `pwd`/bash_completion/vc" >> ~/.bashrc
 
 
 How to use
