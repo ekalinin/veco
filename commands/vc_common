@@ -62,7 +62,7 @@ get_vc_type() {
 
 # Returns list of available command
 get_vc_available_commands() {
-    find $VECO_DIR -iname "vc-*" | cut -d '-' -f 2,3,4
+    find $VECO_COMMANDS_DIR -iname "vc-*" | cut -d '-' -f 2,3,4
 }
 
 

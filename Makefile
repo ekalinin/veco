@@ -4,8 +4,8 @@ prefix=/usr/local
 EXEC_FILES=vc
 
 # files that need mode 644
-SCRIPT_FILES =vc_common
-SCRIPT_FILES+=vc-*
+SCRIPT_FILES =commands/vc_common
+SCRIPT_FILES+=commands/vc-*
 
 all:
 	@echo "usage: make install"
@@ -14,8 +14,9 @@ all:
 install:
 	@command -v colordiff >/dev/null 2>&1 || (echo "'colordiff' not installed. Aborting."; exit 1)
 	install -d -m 0755 $(prefix)/bin
+	install -d -m 0755 $(prefix)/bin/commands
 	install -m 0755 $(EXEC_FILES) $(prefix)/bin
-	install -m 0644 $(SCRIPT_FILES) $(prefix)/bin
+	install -m 0644 $(SCRIPT_FILES) $(prefix)/bin/commands
 
 uninstall:
 	test -d $(prefix)/bin && \

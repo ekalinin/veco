@@ -8,6 +8,7 @@ fi
 
 # current directory
 export VECO_DIR=$(dirname "$(echo "$0" | sed -e 's,\\,/,g')")
+export VECO_COMMANDS_DIR=$VECO_DIR/commands
 
 
 usage() {
@@ -30,19 +31,19 @@ main() {
     fi
 
     # load common functions
-    . "$VECO_DIR/vc_common"
+    . "$VECO_COMMANDS_DIR/vc_common"
 
     # get command from first command line arg
     SUBCOMMAND="$1"; shift
 
     # is it exists
-    if [ ! -e "$VECO_DIR/vc-$SUBCOMMAND" ]; then
+    if [ ! -e "$VECO_COMMANDS_DIR/vc-$SUBCOMMAND" ]; then
         usage
         exit 1
     fi
 
     # run command
-    . "$VECO_DIR/vc-$SUBCOMMAND"
+    . "$VECO_COMMANDS_DIR/vc-$SUBCOMMAND"
 
     SUBACTION="default"
     if [ "$1" = "--help" ]; then
