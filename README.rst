@@ -1,7 +1,7 @@
 Veco — Wrapper for the most popular version control systems
 ===========================================================
 
-**Veco** — is a set of sell-scripts to standardize and facilitate
+**Veco** — is a set of shell-scripts to standardize and facilitate
 the work in the console with the basic version control systems.
 
 Why
