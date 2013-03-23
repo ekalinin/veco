@@ -1,6 +1,6 @@
 
 usage() {
-    echo "usage: vc commit [ other options ]"
+    echo "usage: vc commit-and-push [ other options ]"
 }
 
 
