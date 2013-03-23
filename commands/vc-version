@@ -1,5 +1,5 @@
 
-VECO_VERSION=0.4.0
+VECO_VERSION=0.4.1
 
 usage() {
     echo "usage: vc version"

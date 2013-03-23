@@ -18,7 +18,30 @@ install:
 	install -m 0755 $(EXEC_FILES) $(prefix)/bin
 	install -m 0644 $(SCRIPT_FILES) $(prefix)/bin/commands
 
+install-local:
+	@make install prefix=~
+	@echo "Please, add into your ~/.bashrc:"
+	@echo ""
+	@echo "# set PATH so it includes user's private bin if it exists"
+	@echo 'if [ -d "$$HOME/bin" ] ; then'
+	@echo '    PATH="$$HOME/bin:$$PATH"'
+	@echo "fi"
+
+install-completion:
+	@install -m 0644 bash_completion/vc /etc/bash_completion.d
+
+install-completion-local:
+	@install -d -m 0755 ~/bash_completion.d
+	@install -m 0644 bash_completion/vc ~/bash_completion.d
+	@echo "Please, add into your ~/.bashrc:"
+	@echo ""
+	@echo 'if [ -f "$$HOME/bash_completion.d/vc" ] ; then'
+	@echo '    . $$HOME/bash_completion.d/vc'
+	@echo "fi"
+
 uninstall:
-	test -d $(prefix)/bin && \
+	@test -d $(prefix)/bin && \
 	cd $(prefix)/bin && \
-	rm -f $(EXEC_FILES) $(SCRIPT_FILES)
+	rm -f $(EXEC_FILES) $(SCRIPT_FILES) && \
+	rm -f /etc/bash_completion.d/vc
+	@echo "Done."

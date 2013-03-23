@@ -38,16 +38,29 @@ following command::
 If you want to install only for one specific user (for example,
 just do not have root-rights), then do the following::
 
-    $ make install prefix=$HOME
+    $ make install-local
+
+Next, add the following lines to your ``~/.bashrc``::
+
+    # set PATH so it includes user's private bin if it exists
+    if [ -d "$HOME/bin" ] ; then
+        PATH="$HOME/bin:$PATH"
+    fi
 
 Autocompletion can also be enabled in two ways.
 Global::
 
-    $ sudo cp ./bash_completion/vc /etc/bash_completion.d
+    $ sudo make install-completion
 
 Local::
 
-    $ echo ". `pwd`/bash_completion/vc" >> ~/.bashrc
+    $ make install-completion-local
+
+Next, add the following lines to your ``~/.bashrc``::
+
+    if [ -f "$HOME/bash_completion.d/vc" ] ; then
+        . $HOME/bash_completion.d/vc
+    fi
 
 
 How to use
