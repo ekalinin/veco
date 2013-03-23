@@ -1,0 +1,24 @@
+
+usage() {
+    echo "usage: vc commit [ other options ]"
+}
+
+
+cmd_default() {
+    vc_exec=$(get_vc_type)
+    $vc_exec commit "$@"
+    vc_push=""
+    case $vc_exec in
+        "hg" | "git" )  vc_push="$vc_exec push";;
+        *)              vc_push="echo Sorry, bro, but $vc_exec didn't support push";;
+    esac
+    $vc_push
+}
+
+
+cmd_help() {
+    usage
+    exit 0
+}
+
+# /* vim: set filetype=sh : */
