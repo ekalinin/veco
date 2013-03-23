@@ -6,7 +6,14 @@ usage() {
 
 cmd_default() {
     vc_exec=$(get_vc_type)
-    $vc_exec diff "$@" | colordiff | less -R
+    vc_color=$(which colordiff)
+    if [ "$vc_color" != "" ]; then
+        $vc_exec diff "$@" | $vc_color | less -R
+    elif [ "$vc_exec" = "git" ]; then
+        $vc_exec diff --color "$@"
+    else
+        $vc_exec diff "$@" | less -R
+    fi
 }
 
 

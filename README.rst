@@ -81,6 +81,8 @@ Show all commands, which **veco** supports::
     status
     version
     commands
+    revert
+    commit-and-push
     diff
 
 
@@ -113,6 +115,11 @@ Dependencies
 ------------
 
 **Veco** depends on only one third-party script — ``colordiff``.
+(You can easy install it, for example: ``sudo apt-get install colordiff``)
+
+This dependency is optional. If ``colordiff`` is not installed then
+for ``git`` will be used native color output and for others there
+will be no color output.
 
 
 Supported version control systems
