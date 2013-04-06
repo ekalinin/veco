@@ -11,6 +11,19 @@ _vc() {
       COMPREPLY=($(compgen -W "${commands}" -- ${cur}))
       return 0
     fi
+
+    if [ $COMP_CWORD == 2 ]
+    then
+        case "$prev" in
+            "add" | "diff" | "log" | "revert")
+              local file_list=$(vc status | awk '{ print $NF }')
+              COMPREPLY=($(compgen -W "${file_list}" -- ${cur}))
+              return 0
+            ;;
+            *)
+            ;;
+        esac
+    fi
 }
 
 complete -F _vc vc
