@@ -46,3 +46,8 @@ uninstall:
 	rm -f $(EXEC_FILES) $(SCRIPT_FILES) && \
 	rm -f /etc/bash_completion.d/vc
 	@echo "Done."
+
+release:
+	@git tag `grep "VECO_VERSION=" commands/vc-version  | grep -o -E '[0-9]\.[0-9]\.[0-9]{1,2}'`
+	@git push --tags origin master
+
