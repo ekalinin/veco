@@ -15,7 +15,7 @@ _vc() {
     if [ $COMP_CWORD == 2 ]
     then
         case "$prev" in
-            "add" | "diff" | "log" | "revert")
+            "add" | "diff" | "log" | "rm" | "revert")
               local file_list=$(vc status | awk '{ print $NF }')
               COMPREPLY=($(compgen -W "${file_list}" -- ${cur}))
               return 0

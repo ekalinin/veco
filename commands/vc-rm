@@ -1,0 +1,19 @@
+
+usage() {
+    echo "usage: vc rm <file> [<file>]"
+}
+
+
+cmd_default() {
+    # from vc_common
+    vc_exec=$(get_vc_type)
+    $vc_exec rm "$@"
+}
+
+
+cmd_help() {
+    usage
+    exit 0
+}
+
+# /* vim: set filetype=sh : */
