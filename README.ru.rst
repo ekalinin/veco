@@ -69,20 +69,26 @@ Veco — обертка над наиболее популярными сист�
 
 Для начала, можно посмотреть, какие комманды поддерживает **veco**::
 
-    $ vc commands 
-    commit
-    log
-    push
-    create-ignorefile
+    $ vc list-commands 
     installed
+    push
+    switch
+    create-ignorefile
+    commit-and-push
+    merge
+    list-commands
+    commit
+    version
     add
     type
-    up
-    merge
+    init
     status
-    version
-    commands
     diff
+    rm
+    log
+    clone
+    revert
+    up
 
 
 Чтобы узнать, какие системы контроля версий установлены в системе,

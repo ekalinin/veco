@@ -68,22 +68,26 @@ How to use
 
 Show all commands, which **veco** supports::
 
-    $ vc commands 
-    commit
-    log
-    push
-    create-ignorefile
+    $ vc list-commands 
     installed
+    push
+    switch
+    create-ignorefile
+    commit-and-push
+    merge
+    list-commands
+    commit
+    version
     add
     type
-    up
-    merge
+    init
     status
-    version
-    commands
-    revert
-    commit-and-push
     diff
+    rm
+    log
+    clone
+    revert
+    up
 
 
 To find out what version control systems are installed in the system,

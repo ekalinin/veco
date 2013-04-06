@@ -4,7 +4,7 @@ _vc() {
     cur="${COMP_WORDS[COMP_CWORD]}"
     prev="${COMP_WORDS[COMP_CWORD-1]}"
 
-    commands=$(vc commands)
+    commands=$(vc list-commands)
 
     if [ $COMP_CWORD == 1 ]
     then
