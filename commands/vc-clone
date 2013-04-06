@@ -1,0 +1,19 @@
+
+usage() {
+    echo "usage: vc clone <options>"
+}
+
+
+cmd_default() {
+    # from vc_common
+    vc_exec=$(get_vc_type)
+    $vc_exec clone "$@"
+}
+
+
+cmd_help() {
+    usage
+    exit 0
+}
+
+# /* vim: set filetype=sh : */
