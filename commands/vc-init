@@ -1,0 +1,38 @@
+
+usage() {
+    echo "usage: vc init <control-version-type> <other-options>"
+}
+
+
+cmd_default() {
+    vc_installed=$(get_vc_installed)
+    vc_exec="$1"; shift
+    vc_found=$(echo "$vc_installed" | grep -o "$vc_exec")
+    vc_args=""
+
+    case "$vc_found" in
+        "svn")
+            vc_exec="echo Sorry, bro, but '$vc_exec' didn't support 'init'"
+            ;;
+        "hg" | "git")
+            vc_args="init"
+            ;;
+        *)
+            vc_exec="echo Sorry, bro, but '$vc_exec' is not installed"
+            ;;
+    esac
+
+    if [ "$vc_args" != "" ]; then
+        $vc_exec $vc_args "$@"
+    else
+        $vc_exec
+    fi
+}
+
+
+cmd_help() {
+    usage
+    exit 0
+}
+
+# /* vim: set filetype=sh : */
