@@ -1,0 +1,17 @@
+
+usage() {
+    echo "usage: vc qstat"
+}
+
+
+cmd_default() {
+    vc status | cut -c 1-2 | sort | uniq -c | awk '{if ($2) print $2 "=" $1}'
+}
+
+
+cmd_help() {
+    usage
+    exit 0
+}
+
+# /* vim: set filetype=sh : */
