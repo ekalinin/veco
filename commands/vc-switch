@@ -8,9 +8,15 @@ cmd_default() {
     vc_exec=$(get_vc_type)
     vc_args=""
     case $vc_exec in
-        "svn") vc_exec="switch"
-        "hg" ) vc_args="up";;
-        "git") vc_args="checkout";;
+        "svn")
+            vc_exec="switch"
+            ;;
+        "hg" )
+            vc_args="up"
+            ;;
+        "git")
+            vc_args="checkout"
+            ;;
     esac
     $vc_exec $vc_args "$@"
 }
