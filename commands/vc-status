@@ -7,16 +7,16 @@ usage() {
 cmd_default() {
     # from vc_common
     vc_exec=$(get_vc_type)
-    vc_args=""
     case $vc_exec in
         "git")
-            vc_args="status --short"
+            $vc_exec status --short
             ;;
         *)
-            vc_args="status"
+            if [ "$vc_exec" != "" ]; then
+                $vc_exec status
+            fi
             ;;
     esac
-    $vc_exec $vc_args "$@"
 }
 
 
