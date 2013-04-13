@@ -119,11 +119,9 @@ for themselves. Here is an example of a typical session::
     $ vc commit -m "0.3.0: added commands: commit/push/installed/log/merge/up"
     $ vc push
 
-Here is one example of the veco's usage (custom bash prompt)::
+Here is one example of the veco's usage (custom bash prompt):
 
 .. image:: https://raw.github.com/ekalinin/veco/master/bash_prompt/bash-promp-example.png
-   :alt: veco usage for improve bash prompt
-   :align: center
 
 Full example text see in bash_promp_ directory.
 
