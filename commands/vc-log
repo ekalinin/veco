@@ -6,7 +6,16 @@ usage() {
 
 cmd_default() {
     vc_exec=$(get_vc_type)
-    $vc_exec log "$@"
+    vc_args=""
+    case $vc_exec in
+        "hg")
+            vc_args="log -b `hg branch`"
+            ;;
+        * )
+            vc_args="log"
+            ;;
+    esac
+    $vc_exec $vc_args "$@"
 }
 
 
