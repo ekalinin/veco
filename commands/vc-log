@@ -15,7 +15,9 @@ cmd_default() {
             vc_args="log"
             ;;
     esac
-    $vc_exec $vc_args "$@"
+    if [ "$vc_exec" != "" ]; then
+        $vc_exec $vc_args "$@"
+    fi
 }
 
 

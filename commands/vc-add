@@ -7,7 +7,9 @@ usage() {
 cmd_default() {
     # from vc_common
     vc_exec=$(get_vc_type)
-    $vc_exec add "$@"
+    if [ "$vc_exec" != "" ]; then
+        $vc_exec add "$@"
+    fi
 }
 
 

@@ -12,7 +12,9 @@ cmd_default() {
         "hg" ) vc_args="pull --update";;
         "git") vc_args="pull";;
     esac
-    $vc_exec $vc_args "$@"
+    if [ "$vc_exec" != "" ]; then
+        $vc_exec $vc_args "$@"
+    fi
 }
 
 

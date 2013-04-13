@@ -6,7 +6,9 @@ usage() {
 
 cmd_default() {
     vc_exec=$(get_vc_type)
-    $vc_exec merge "$@"
+    if [ "$vc_exec" != "" ]; then
+        $vc_exec merge "$@"
+    fi
 }
 
 
