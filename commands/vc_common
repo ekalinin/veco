@@ -32,9 +32,9 @@ get_vc_type() {
     for vc in `echo $vc_list`
     do
         vc_dir=$(get_vc_default_dir "$vc")
-        if [ "$DEBUG" = "yes" ]; then
-            echo "checking: $vc, folder: $vc_dir"
-        fi
+        #if [ "$DEBUG" = "yes" ]; then
+        #    echo "checking: $vc, folder: $vc_dir"
+        #fi
         if [ -d "$vc_dir" ]; then
             echo "$vc"
             return
@@ -56,7 +56,7 @@ get_vc_type() {
         fi
     done
 
-    echo "not found"
+    echo ""
 }
 
 
@@ -65,5 +65,30 @@ get_vc_available_commands() {
     find $VECO_COMMANDS_DIR -iname "vc-*" | cut -d '-' -f 2,3,4
 }
 
+get_svn_root() {
+    #svn info | grep -B 1 UUI | head -n 1 | grep -o -E ': .*' | sed 's/: //'
+    svn info | grep URL | grep -o -E ': .*' | sed 's/: //' | sed 's/\/trunk.*//' | sed 's/\/branches.*//' | sed 's/\/tags.*//'
+}
+
+get_svn_branches_url() {
+    svn_root=$(get_svn_root)
+    echo "$svn_root/branches"
+}
+
+get_svn_branches() {
+    svn_branches_url=$(get_svn_branches_url)
+    svn ls $svn_branches_url
+}
+
+get_svn_current_branch() {
+    svn_branch=$(svn info | grep URL | grep -o -E -i "trunk")
+    if [ "$svn_branch" = "" ]; then
+        svn_branch=$(svn info | grep URL | grep -o -E -i "branches/.*/" | sed 's/\/$//')
+    fi
+    if [ "$svn_branch" = "" ]; then
+        svn_branch=$(svn info | grep URL | grep -o -E -i "tags/.*/" | sed 's/\/$//')
+    fi
+    echo "$svn_branch"
+}
 
 # /* vim: set filetype=sh : */
