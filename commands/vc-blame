@@ -1,0 +1,21 @@
+
+usage() {
+    echo "usage: vc blame <file> [<file>]"
+}
+
+
+cmd_default() {
+    # from vc_common
+    vc_exec=$(get_vc_type)
+    if [ "$vc_exec" != "" ]; then
+        $vc_exec blame "$@"
+    fi
+}
+
+
+cmd_help() {
+    usage
+    exit 0
+}
+
+# /* vim: set filetype=sh : */
