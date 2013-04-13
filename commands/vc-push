@@ -6,7 +6,19 @@ usage() {
 
 cmd_default() {
     vc_exec=$(get_vc_type)
-    $vc_exec push "$@"
+    vc_args=""
+    case $vc_exec in
+        "hg")
+            vc_args="push --new-branch"
+            ;;
+        "git")
+            vc_args="push"
+            ;;
+        * )
+            vc_args="push"
+            ;;
+    esac
+    $vc_exec $vc_args "$@"
 }
 
 
