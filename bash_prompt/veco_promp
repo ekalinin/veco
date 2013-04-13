@@ -1,0 +1,42 @@
+DIRTY_SIGN='⚡'
+
+MAGENTA=$(tput setaf 9)
+ORANGE=$(tput setaf 202)
+GREEN=$(tput setaf 190)
+PURPLE=$(tput setaf 141)
+WHITE=$(tput setaf 256)
+LGRAY=$(tput setaf 245)
+BLUE=$(tput setaf 12)
+
+BOLD=$(tput bold)
+RESET=$(tput sgr0)
+
+RED='\033[1;31m'
+PURPLE2='\033[1;35m'
+
+
+veco_prompt() {
+    vc_type=$(vc type)
+    if [ "$vc_type" != "" ]; then
+        vc_branch=$(vc branch)
+        vc_changes=$(vc qstat| tr '\n' ' ')
+        if [ "$vc_changes"  != "" ]; then
+            echo -e "on $PURPLE2$vc_type/$vc_branch$RESET$RED $DIRTY_SIGN $vc_changes $RESET"
+        else
+            echo -e "on $PURPLE2$vc_type/$vc_branch$RESET"
+        fi
+    fi
+}
+
+PS1_CHROOT='${debian_chroot:+($debian_chroot)}'
+PS1_USER_HOST="$PS1_CHROOT$BOLD$GREEN\u$RESET★ $BOLD$ORANGE\h$RESET"
+PS1_PATH="$BOLD$BLUE\w$RESET"
+PS1_VC='$(veco_prompt)'
+PS1_TIME="$LGRAY[\$(date +%H:%M:%S)]$RESET"
+
+PS1_R1="$PS1_TIME $PS1_USER_HOST in $PS1_PATH $PS1_VC"
+PS1_R2="➥ "
+
+PS1="$PS1_R1\n$PS1_R2"
+
+# vim: set filetype=sh :
