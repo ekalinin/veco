@@ -1,0 +1,29 @@
+
+usage() {
+    echo "usage: vc branches"
+}
+
+
+cmd_default() {
+    vc_exec=$(get_vc_type)
+    case $vc_exec in
+        "svn")
+            vc_branches_url=$(get_svn_branches_url)
+            $vc_exec ls $vc_branches_url
+            ;;
+        "hg" )
+            $vc_exec branches
+            ;;
+        "git")
+            $vc_exec branch | sed 's/* /  /'
+            ;;
+    esac
+}
+
+
+cmd_help() {
+    usage
+    exit 0
+}
+
+# /* vim: set filetype=sh : */
