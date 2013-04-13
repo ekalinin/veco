@@ -123,7 +123,7 @@ Here is one example of the veco's usage (custom bash prompt):
 
 .. image:: https://raw.github.com/ekalinin/veco/master/bash_prompt/bash-promp-example.png
 
-Full example text see in bash_promp_ directory.
+Full example text see in bash_prompt_.
 
 .. _bash_prompt: https://github.com/ekalinin/veco/tree/master/bash_prompt
 
