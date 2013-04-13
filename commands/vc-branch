@@ -1,0 +1,29 @@
+
+usage() {
+    echo "usage: vc branch"
+}
+
+
+cmd_default() {
+    vc_exec=$(get_vc_type)
+    case $vc_exec in
+        "svn")
+            vc_branch=$(get_svn_current_branch)
+            echo $vc_branch
+            ;;
+        "hg" )
+            $vc_exec branch
+            ;;
+        "git")
+            $vc_exec branch | grep '*' | sed 's/* //'
+            ;;
+    esac
+}
+
+
+cmd_help() {
+    usage
+    exit 0
+}
+
+# /* vim: set filetype=sh : */
