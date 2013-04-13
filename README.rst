@@ -75,13 +75,18 @@ Show all commands, which **veco** supports::
     create-ignorefile
     commit-and-push
     merge
+    help
+    branch
+    branches
     list-commands
     commit
     version
+    blame
     add
     type
     init
     status
+    qstat
     diff
     rm
     log
