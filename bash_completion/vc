@@ -20,6 +20,11 @@ _vc() {
               COMPREPLY=($(compgen -W "${file_list}" -- ${cur}))
               return 0
             ;;
+            "branch-switch" | "merge")
+              local branch_list=$(vc branches | cut -d ' ' -f 1)
+              COMPREPLY=($(compgen -W "${branch_list}" -- ${cur}))
+              return 0
+            ;;
             *)
             ;;
         esac
