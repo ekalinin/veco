@@ -1,0 +1,31 @@
+
+usage() {
+    echo "usage: vc ctreate-branch name"
+}
+
+
+cmd_default() {
+    vc_exec=$(get_vc_type)
+    vc_branch_name="$1"; shift
+    case $vc_exec in
+        "svn")
+            vc_root=$(get_svn_root)
+            vc_branches_url=$(get_svn_branches_url)
+            $vc_exec copy $vc_root/trunk $vc_branches_url/$vc_branch_name
+            ;;
+        "hg" )
+            $vc_exec branch $vc_branch_name
+            ;;
+        "git")
+            $vc_exec checkout -b $vc_branch_name
+            ;;
+    esac
+}
+
+
+cmd_help() {
+    usage
+    exit 0
+}
+
+# /* vim: set filetype=sh : */
