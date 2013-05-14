@@ -69,30 +69,31 @@ How to use
 Show all commands, which **veco** supports::
 
     $ vc list-commands 
-    installed
-    push
-    switch
-    create-ignorefile
-    commit-and-push
-    merge
-    help
-    branch
-    branches
-    list-commands
-    commit
-    version
-    blame
     add
-    type
-    init
-    status
-    qstat
-    diff
-    rm
-    log
+    blame
+    branch
+    branch-create
+    branch-list
+    branch-switch
     clone
+    commit
+    commit-and-push
+    create-ignorefile
+    diff
+    help
+    init
+    installed
+    list-commands
+    log
+    merge
+    push
+    qstat
     revert
+    rm
+    status
+    type
     up
+    version
 
 
 To find out what version control systems are installed in the system,
