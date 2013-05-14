@@ -7,12 +7,16 @@ usage() {
 cmd_default() {
     vc_exec=$(get_vc_type)
     vc_color=$(which colordiff)
+    vc_args="diff"
+    if [ "$vc_exec" = "svn" ]; then
+        vc_args="$vc_args -x -p"
+    fi
     if [ "$vc_color" != "" ]; then
-        $vc_exec diff "$@" | $vc_color | less -R
+        $vc_exec $vc_args "$@" | $vc_color | less -R
     elif [ "$vc_exec" = "git" ]; then
         $vc_exec diff --color "$@"
     else
-        $vc_exec diff "$@" | less -R
+        $vc_exec $vc_args "$@" | less -R
     fi
 }
 
