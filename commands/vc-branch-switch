@@ -7,9 +7,20 @@ usage() {
 cmd_default() {
     vc_exec=$(get_vc_type)
     vc_args=""
+    vc_branch_name="$1"; shift
     case $vc_exec in
         "svn")
-            vc_exec="switch"
+            case $vc_branch_name in
+                "trunk" | "trunk/")
+                    vc_root=$(get_svn_root)
+                    $vc_exec switch $vc_root/trunk
+                    ;;
+                *)
+                    vc_branches_url=$(get_svn_branches_url)
+                    $vc_exec switch $vc_branches_url/$vc_branch_name
+                    ;;
+            esac
+            vc_exec=""
             ;;
         "hg" )
             vc_args="up"
@@ -19,7 +30,7 @@ cmd_default() {
             ;;
     esac
     if [ "$vc_exec" != "" ]; then
-        $vc_exec $vc_args "$@"
+        $vc_exec $vc_args $vc_branch_name "$@"
     fi
 }
 
