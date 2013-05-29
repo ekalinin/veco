@@ -9,7 +9,8 @@ cmd_default() {
     case $vc_exec in
         "svn")
             vc_branches_url=$(get_svn_branches_url)
-            $vc_exec ls $vc_branches_url
+            $vc_exec ls $vc_branches_url | sed 's/\/$//'
+            echo "trunk"
             ;;
         "hg" )
             $vc_exec branches
