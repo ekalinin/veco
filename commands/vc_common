@@ -83,10 +83,10 @@ get_svn_branches() {
 get_svn_current_branch() {
     svn_branch=$(svn info | grep URL | grep -o -E -i "trunk")
     if [ "$svn_branch" = "" ]; then
-        svn_branch=$(svn info | grep URL | grep -o -E -i "branches/.*/" | sed 's/\/$//')
+        svn_branch=$(svn info | grep URL | grep -o -E -i "branches/.*" | sed 's/\/$//')
     fi
     if [ "$svn_branch" = "" ]; then
-        svn_branch=$(svn info | grep URL | grep -o -E -i "tags/.*/" | sed 's/\/$//')
+        svn_branch=$(svn info | grep URL | grep -o -E -i "tags/.*" | sed 's/\/$//')
     fi
     echo "$svn_branch"
 }
