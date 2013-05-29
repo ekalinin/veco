@@ -21,7 +21,7 @@ _vc() {
               return 0
             ;;
             "branch-switch" | "merge")
-              local branch_list=$(vc branches | cut -d ' ' -f 1)
+              local branch_list=$(vc branch-list | cut -d ' ' -f 1)
               COMPREPLY=($(compgen -W "${branch_list}" -- ${cur}))
               return 0
             ;;
