@@ -5,10 +5,39 @@ usage() {
 
 
 cmd_default() {
-    # from vc_common
-    vc_exec=$(get_vc_type)
+    vc_repo_url="$1"; shift
+    vc_list=$(get_vc_installed)
+    vc_exec=""
+
+    for vc in `echo $vc_list`
+    do
+        vc_status=$(echo "$vc_repo_url" | grep "$vc" | wc -l)
+        if [ "$vc_status" != "0" ]; then
+            vc_exec="$vc"
+            break
+        fi
+    done
+
+    if [ "$vc_exec" = "" ]; then
+        echo "Could not determine the type of system."
+        echo "Please, enter one of the following: $vc_list"
+        read vc_exec
+
+        for vc in `echo $vc_list`
+        do
+            vc_status=$(echo "$vc_exec" | grep "$vc" | wc -l)
+            if [ "$vc_status" != "0" ]; then
+                vc_exec="$vc"
+                break
+            fi
+
+            echo "Sorry, but this type of the system is not supported."
+            return
+        done
+    fi
+
     if [ "$vc_exec" != "" ]; then
-        $vc_exec clone "$@"
+        $vc_exec clone $vc_repo_url "$@"
     fi
 }
 
