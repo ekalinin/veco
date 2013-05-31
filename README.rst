@@ -21,6 +21,14 @@ the basic version control systems. At the same time, do not lose the
 opportunity to "forwarding" the relevant options for a particular
 implementation of a command for each version control system.
 
+Here is one example of the veco's usage (custom bash prompt):
+
+.. image:: https://raw.github.com/ekalinin/veco/master/bash_prompt/bash-promp-example.png
+
+Full example text see in bash_prompt_.
+
+.. _bash_prompt: https://github.com/ekalinin/veco/tree/master/bash_prompt
+
 
 How to install
 --------------
@@ -74,6 +82,7 @@ Show all commands, which **veco** supports::
     branch
     branch-create
     branch-list
+    branch-merge
     branch-switch
     clone
     commit
@@ -85,7 +94,6 @@ Show all commands, which **veco** supports::
     installed
     list-commands
     log
-    merge
     push
     qstat
     revert
@@ -110,6 +118,7 @@ do the following::
     $ vc type
     git
 
+
 With the rest of the commands should be no problems, as their names speak
 for themselves. Here is an example of a typical session::
 
@@ -119,14 +128,6 @@ for themselves. Here is an example of a typical session::
     $ vc diff --staged
     $ vc commit -m "0.3.0: added commands: commit/push/installed/log/merge/up"
     $ vc push
-
-Here is one example of the veco's usage (custom bash prompt):
-
-.. image:: https://raw.github.com/ekalinin/veco/master/bash_prompt/bash-promp-example.png
-
-Full example text see in bash_prompt_.
-
-.. _bash_prompt: https://github.com/ekalinin/veco/tree/master/bash_prompt
 
 
 Dependencies
