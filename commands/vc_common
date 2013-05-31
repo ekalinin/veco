@@ -32,10 +32,14 @@ get_vc_type() {
     for vc in `echo $vc_list`
     do
         vc_dir=$(get_vc_default_dir "$vc")
-        #if [ "$DEBUG" = "yes" ]; then
-        #    echo "checking: $vc, folder: $vc_dir"
-        #fi
         if [ -d "$vc_dir" ]; then
+            echo "$vc"
+            return
+        fi
+        # if download svn root repo and
+        # navidate to the trunk dir, for example,
+        # 'vc type' will fail without this check
+        if [ -d "../$vc_dir" ]; then
             echo "$vc"
             return
         fi
