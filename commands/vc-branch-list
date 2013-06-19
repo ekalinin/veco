@@ -13,10 +13,10 @@ cmd_default() {
             echo "trunk"
             ;;
         "hg" )
-            $vc_exec branches
+            $vc_exec branches "$@"
             ;;
         "git")
-            $vc_exec branch | sed 's/* /  /'
+            $vc_exec branch "$@" | sed 's/* /  /'
             ;;
     esac
 }
