@@ -20,18 +20,22 @@ cmd_default() {
                     $vc_exec switch $vc_branches_url/$vc_branch_name
                     ;;
             esac
-            vc_exec=""
             ;;
         "hg" )
-            vc_args="up"
+            $vc_exec up $vc_branch_name "$@"
             ;;
         "git")
-            vc_args="checkout"
+            is_local_branch=$(git branch | grep $vc_branch_name | wc -l)
+            if [ "$is_local_branch" != "0" ]; then
+                $vc_exec checkout $vc_branch_name "$@"
+            else
+                is_remote_branch=$(git branch -a | grep $vc_branch_name | wc -l)
+                if [ "$is_remote_branch" != "0" ]; then
+                    $vc_exec checkout -b $vc_branch_name origin/$vc_branch_name "$@"
+                fi;
+            fi;
             ;;
     esac
-    if [ "$vc_exec" != "" ]; then
-        $vc_exec $vc_args $vc_branch_name "$@"
-    fi
 }
 
 
