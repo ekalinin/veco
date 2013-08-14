@@ -1,0 +1,34 @@
+
+usage() {
+    echo "usage: vc log [ other options ]"
+}
+
+
+cmd_default() {
+    vc_exec=$(get_vc_type)
+    case $vc_exec in
+        "hg")
+            $vc_exec log -b `hg branch` \
+                --template '{node|short} | {date|isodatesec} | {author|user}: {desc|strip|firstline}\n' \
+                        "$@"
+            ;;
+        "git")
+            $vc_exec log --pretty=format:"%h %ai | %an : %s" "$@"
+            ;;
+        "svn")
+            $vc_exec log "$@" | perl -pe 's/^-+//g' | \
+                                perl -pe 's/^\n//g' | \
+                                perl -pe 's/line\n/line | /g'
+            ;;
+        * )
+            ;;
+    esac
+}
+
+
+cmd_help() {
+    usage
+    exit 0
+}
+
+# /* vim: set filetype=sh : */
